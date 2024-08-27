@@ -1,0 +1,7 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  errors:
+    avoid_print: ignore
+    must_be_immutable: ignore
+    unused_element: ignore
+    unused_local_variable: ignore

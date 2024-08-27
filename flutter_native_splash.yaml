@@ -1,0 +1,10 @@
+flutter_native_splash:
+  
+  image: assets/images/splash.png  # Replace with your image path
+  color: "#FFFFFF"  # Background color
+
+
+  android_12:
+    image: assets/images/splash.png
+    color: "#FFFFFF" 
+
