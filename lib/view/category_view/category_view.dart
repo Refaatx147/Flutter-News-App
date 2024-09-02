@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_appp/core/app_constants/category_list.dart';
 import 'package:news_appp/core/blocs/api_bloc/category_news_bloc/bloc/category_news_bloc.dart';
 import 'package:news_appp/core/blocs/layout_cubit/home_layout_cubit.dart';
-import 'package:news_appp/view/widgets/alert_error.dart';
+import 'package:news_appp/view/widgets/alerts.dart';
 import 'package:news_appp/view/widgets/list_widget.dart';
 import 'package:news_appp/view/widgets/loading_widget.dart';
 
@@ -27,8 +27,7 @@ class _CategoryViewState extends State<CategoryView>
     controller =
         TabController(length: CategoryList.categoryItems.length, vsync: this);
     super.initState();
-    // BlocProvider.of<CategoryNewsBloc>(context)
-    //     .add(CategoryEvent(category: CategoryList.categoryItems[0]));
+
   }
 
   @override
@@ -36,19 +35,24 @@ class _CategoryViewState extends State<CategoryView>
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          backgroundColor: context.read<HomeCubit>().darkMode
+              ? Colors.blueGrey[900]
+              : Colors.white,
           body: Column(
             children: [
+              const SizedBox(
+                height: 17,
+              ),
               Padding(
-                padding: const EdgeInsets.all(3.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: context.read<HomeCubit>().darkMode
                         ? Colors.amber[50]
                         : Colors.blueGrey[900],
                     borderRadius: const BorderRadius.horizontal(
-                      left: Radius.elliptical(20, 20),
-                      right: Radius.elliptical(20, 20),
+                      left: Radius.elliptical(10, 15),
+                      right: Radius.elliptical(10, 15),
                     ),
                   ),
                   child: BlocBuilder<CategoryNewsBloc, CategoryNewsStates>(
@@ -117,6 +121,9 @@ class _CategoryViewState extends State<CategoryView>
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               Expanded(
                 child: TabBarView(
                   physics: const NeverScrollableScrollPhysics(),
@@ -153,9 +160,6 @@ class _CategoryViewState extends State<CategoryView>
                             return NewsList(
                               news: categoryNews,
                               loadMore: () {
-                                //    await Future.delayed(const Duration(seconds: 2));
-
-                                // ignore: use_build_context_synchronously
                                 BlocProvider.of<CategoryNewsBloc>(context)
                                     .add(CategoryEvent(category: categoryItem));
                               },

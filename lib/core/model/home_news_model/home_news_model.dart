@@ -9,12 +9,14 @@ class HomeNewsModel extends Equatable {
   String? urlToImage;
   String? publishedAt;
   String? description;
+  String? uuid;
   HomeNewsModel({
     required this.title,
     required this.author,
     required this.urlToImage,
     required this.publishedAt,
     required this.description,
+    required this.uuid,
   });
 
   factory HomeNewsModel.fromJson(Map<String, dynamic> jsonData) {
@@ -23,7 +25,9 @@ class HomeNewsModel extends Equatable {
         author: jsonData['author'] ?? "",
         urlToImage: jsonData['image_url'] ?? AppStrings.defaultImage,
         publishedAt: jsonData['publishedAt'] ?? "",
-        description: jsonData['description'] ?? "");
+        description: jsonData['description'] ?? "",
+        uuid :jsonData['uuid']??"",
+        );
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +37,7 @@ class HomeNewsModel extends Equatable {
       'image_url': urlToImage,
       'publishedAt': publishedAt,
       'description': description,
+      'uuid':uuid
     };
   }
 

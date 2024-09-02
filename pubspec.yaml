@@ -24,6 +24,7 @@ dependencies:
   placeholder_utils: ^0.0.1
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
+  status_alert: ^1.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -12,7 +12,7 @@ void main() async {
   await CacheHelper().init();
   Bloc.observer = MyBlocObserver();
   await di.init();
-// CacheHelper().clearData();
+ //CacheHelper().clearData();
   runApp(const MainApp());
 }
 
@@ -25,17 +25,18 @@ class MainApp extends StatelessWidget {
       create: (context) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          return MaterialApp(
-            darkTheme: ThemeData.dark(),
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData.light(
-              useMaterial3: true,
-            ),
-            themeMode: context.read<HomeCubit>().darkMode
-                ? ThemeMode.dark
-                : ThemeMode.light,
-            onGenerateRoute: AppRouter().onGenerateRoute,
-            initialRoute: AppStrings.homeView,
+          return  MaterialApp(
+              darkTheme: ThemeData.dark(),
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData.light(
+                useMaterial3: true,
+              ),
+              themeMode: context.read<HomeCubit>().darkMode
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
+              onGenerateRoute: AppRouter().onGenerateRoute,
+              initialRoute: AppStrings.homeLayout,
+            
           );
         },
       ),

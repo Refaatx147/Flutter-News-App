@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:news_appp/core/blocs/api_bloc/home_news_bloc/home_news_bloc.dart';
-import 'package:news_appp/view/widgets/alert_error.dart';
+import 'package:news_appp/view/widgets/alerts.dart';
 import 'package:news_appp/view/widgets/list_widget.dart';
 import 'package:news_appp/view/widgets/loading_widget.dart';
 
@@ -21,9 +21,7 @@ class HomeView extends StatelessWidget {
           //   final news = context.watch<NewsBloc>().news;
           if (state.homeStatus == NewsStatus.loading &&
               state.homeNewsList.isEmpty) {
-            return const Center(
-              child: LoadingListPage()
-            );
+            return const Center(child: LoadingListPage());
           } else if (state.homeStatus == NewsStatus.error) {
             // Show a snackbar with the error message
             return AlertError(
@@ -41,7 +39,7 @@ class HomeView extends StatelessWidget {
             }
             return NewsList(
               news: homeNews,
-              loadMore: ()  {
+              loadMore: () {
                 BlocProvider.of<NewsBloc>(context).add(HomeEvent());
               },
             );
